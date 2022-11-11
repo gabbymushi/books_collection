@@ -7,6 +7,7 @@ import Register from './pages/register';
 import CreateBook from './pages/create-book';
 import EditBook from './pages/edit';
 import { useEffect, useState } from 'react';
+import PrivateRoutes from './privateRoutes';
 
 function App() {
   const [isLoggedin, setLogin] = useState(true);
@@ -34,10 +35,10 @@ function App() {
         <nav className='navbar navbar-expand navbar-dark bg-dark'>
           <div className='navbar-nav mr-auto'>
             <li className='nav-item'>
-              <Link to={"/home"} className='nav-link'>Home</Link>
+              <Link to={"/"} className='nav-link'>Home</Link>
             </li>
             <li>
-              <Link to={"/"} className='nav-link' onClick={() => logout()}>Logout</Link>
+              <Link to={"/login"} className='nav-link' onClick={() => logout()}>Logout</Link>
             </li>
           </div>
         </nav>
@@ -45,11 +46,13 @@ function App() {
       <br />
       <div className='container'>
         <Routes>
-          <Route path='/' element={<Login login={login} />} />
-          <Route path='/home' element={<Home />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path='/add-book' element={<CreateBook />} />
+            <Route path='/edit/:id' element={<EditBook />} />
+            <Route path='/' element={<Home />} />
+          </Route>
+          <Route path='/login' element={<Login login={login} />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/add-book' element={<CreateBook />} />
-          <Route path='/edit/:id' element={<EditBook />} />
         </Routes>
 
       </div>
