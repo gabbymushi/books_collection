@@ -14,7 +14,6 @@ export default function CreateBook() {
     }
 
     const submitForm = () => {
-        console.log(inputs.title);
         if (inputs.title === undefined || inputs.title === '') {
             alert('Add title')
             return
@@ -29,7 +28,7 @@ export default function CreateBook() {
         }
 
         http.post('/books', inputs).then((res) => {
-            navigate('/');
+            navigate('/home');
         })
     }
 

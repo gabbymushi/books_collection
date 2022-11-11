@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import http from "../http";
 
 export default function Home() {
-    const [users, setUsers] = useState([]);
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
         fetchAllBooks();
@@ -11,7 +11,13 @@ export default function Home() {
 
     const fetchAllBooks = () => {
         http.get('/books').then(res => {
-            setUsers(res.data.data);
+            setBooks(res.data.data);
+        })
+    }
+
+    const deleteBook = (id) => {
+        http.delete(`/books/${id}`).then(res => {
+            fetchAllBooks();
         })
     }
 
@@ -22,7 +28,7 @@ export default function Home() {
                 <div className="col-md-10"></div>
                 <div className="col-md-2"><Link className="btn btn-primary" to={'/add-book'}>Add book</Link></div>
             </div>
-            <br/>
+            <br />
             <table className="table table-striped table-bordered ">
                 <thead className="thead-dark">
                     <tr>
@@ -35,16 +41,16 @@ export default function Home() {
                 </thead>
                 <tbody>
                     {
-                        users.map((user, index) => (
-                            <tr key={user.id}>
+                        books.map((book, index) => (
+                            <tr key={book.id}>
                                 <td>{++index}</td>
-                                <td>{user.title}</td>
-                                <td>{user.author}</td>
-                                <td>{user.description}</td>
+                                <td>{book.title}</td>
+                                <td>{book.author}</td>
+                                <td>{book.description}</td>
                                 <td>
-                                    {JSON.parse(localStorage.getItem('user')).id === user.user_id &&
-                                        <div>  <Link to={{ pathname: `/edit/${user.id}` }} className="btn btn-primary">Edit</Link>
-                                            <button className="btn btn-danger">Delete</button></div>
+                                    {JSON.parse(localStorage.getItem('user')).id === book.user_id &&
+                                        <div>  <Link to={{ pathname: `/edit/${book.id}` }} className="btn btn-primary">Edit</Link>
+                                            <button onClick={() => { deleteBook(book.id) }} className="btn btn-danger">Delete</button></div>
                                     }
                                 </td>
                             </tr>

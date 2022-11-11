@@ -113,6 +113,12 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::where('id', $id)->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Book deleted successfully.',
+            'data' => $book
+        ], 200);
     }
 }
