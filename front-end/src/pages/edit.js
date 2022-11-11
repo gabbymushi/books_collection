@@ -9,7 +9,7 @@ export default function EditBook() {
 
     useEffect(() => {
         fetchUser();
-    },{})
+    }, {})
 
     const fetchUser = () => {
         http.get(`/books/${id}`).then(res => {
@@ -29,8 +29,19 @@ export default function EditBook() {
     }
 
     const submitForm = () => {
-        console.log(inputs);
-        console.log(inputs);
+        if (inputs.title === undefined || inputs.title === '') {
+            alert('Add title')
+            return
+        }
+        if (inputs.author === undefined || inputs.author === '') {
+            alert('Add author')
+            return
+        }
+        if (inputs.description === undefined || inputs.description === '') {
+            alert('Add description')
+            return
+        }
+
         http.patch(`/books/${id}`, inputs).then((res) => {
             navigate('/home');
         })
