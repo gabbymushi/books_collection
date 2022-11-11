@@ -14,7 +14,20 @@ export default function CreateBook() {
     }
 
     const submitForm = () => {
-        console.log(inputs);
+        console.log(inputs.title);
+        if (inputs.title === undefined || inputs.title === '') {
+            alert('Add title')
+            return
+        }
+        if (inputs.author === undefined || inputs.author === '') {
+            alert('Add author')
+            return
+        }
+        if (inputs.description === undefined || inputs.description === '') {
+            alert('Add description')
+            return
+        }
+
         http.post('/books', inputs).then((res) => {
             navigate('/');
         })
@@ -31,6 +44,7 @@ export default function CreateBook() {
                             name="title"
                             value={inputs.title || ''}
                             onChange={handleChange}
+                            required
                         />
 
                         <label>Author</label>
@@ -40,13 +54,13 @@ export default function CreateBook() {
                             onChange={handleChange}
                         />
 
-                        <label>Title</label>
+                        <label>Description</label>
                         <textarea type='text' className='form-control' maxLength='200'
                             name="description"
                             value={inputs.description || ''}
                             onChange={handleChange}>
                         </textarea>
-                        <br/>
+                        <br />
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="flexCheckChecked"
                                 name="is_public"
@@ -56,7 +70,7 @@ export default function CreateBook() {
                                 Is private
                             </label>
                         </div>
-                        <br/>
+                        <br />
                         <button onClick={submitForm} className="btn btn-primary" style={{ width: '100%' }}>Save</button>
                     </div>
                 </div >
