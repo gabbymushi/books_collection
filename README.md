@@ -35,6 +35,8 @@ This is an example of how to list things you need to use the software and how to
 
 * php ^8.0.2
 
+* mysql server
+
 
 ### Installation
 
