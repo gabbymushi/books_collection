@@ -2,7 +2,7 @@
 <a name="readme-top"></a>
 
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Books Collection</h3>
 
 
 
@@ -32,9 +32,7 @@ Below are the prerequisites that you should have in your PC.
 
 This is an example of how to list things you need to use the software and how to install them.
 * nodejs & npm
-  ```sh
-  npm install npm@latest -g
-  ```
+
 * php ^8.0.2
 
 
@@ -42,7 +40,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/gabbymushi/books_collection.git
    ```
 2. Inside a project folder, change directory to back-end and Install vendor packages
    ```sh
