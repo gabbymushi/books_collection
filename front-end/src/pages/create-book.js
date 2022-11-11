@@ -28,15 +28,16 @@ export default function CreateBook() {
         }
 
         http.post('/books', inputs).then((res) => {
-            navigate('/home');
+            navigate('/');
         })
     }
 
     return (
         <div classNamee="card card-body bg-light">
-            <h2>Add a book</h2>
             <div className="row">
+                <div className="col-sm-3"></div>
                 <div className="col-sm-6 justify-content-center">
+                    <h2>Add a book</h2>
                     <div className="card p-4">
                         <label>Title</label>
                         <input type='text' className='form-control'

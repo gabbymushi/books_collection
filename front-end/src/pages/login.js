@@ -23,7 +23,7 @@ export default function Login({ login }) {
             alert('Add password')
             return
         }
-        
+
         http.post('/auth/login', inputs).then((res) => {
             localStorage.clear();
 
@@ -35,7 +35,7 @@ export default function Login({ login }) {
             console.log(localStorage.getItem('token'))
             login();
 
-            navigate('/home');
+            navigate('/');
         }).catch((res) => {
             alert('Wrong username or password');
         })
@@ -43,9 +43,10 @@ export default function Login({ login }) {
 
     return (
         <div classNamee="card card-body bg-light">
-            <h2>Login</h2>
             <div className="row">
+                <div className="col-sm-3"></div>
                 <div className="col-sm-6 justify-content-center">
+                    <h2>Login</h2>
                     <div className="card p-4">
                         <label>Email</label>
                         <input type='text' className='form-control'

@@ -17,6 +17,7 @@ export default function EditBook() {
                 title: res.data.data.title,
                 author: res.data.data.author,
                 description: res.data.data.description,
+                is_public: res.data.data.is_public,
             });
         })
     }
@@ -43,15 +44,16 @@ export default function EditBook() {
         }
 
         http.patch(`/books/${id}`, inputs).then((res) => {
-            navigate('/home');
+            navigate('/');
         })
     }
 
     return (
         <div classNamee="card card-body bg-light">
-            <h2>Edit a book</h2>
             <div className="row">
+                <div className="col-sm-3"></div>
                 <div className="col-sm-6 justify-content-center">
+                    <h2>Edit a book</h2>
                     <div className="card p-4">
                         <label>Title</label>
                         <input type='text' className='form-control'
@@ -73,16 +75,14 @@ export default function EditBook() {
                             value={inputs.description || ''}
                             onChange={handleChange}>
                         </textarea>
-                        <br />
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckChecked"
-                                name="is_public"
-                                value={inputs.is_public || '0'}
-                                onChange={handleChange} />
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Is private
-                            </label>
-                        </div>
+                        <label>Is Public</label>
+                        <select className='form-control'
+                            value={inputs.is_public}
+                            name="is_public"
+                            onChange={handleChange}>
+                            <option value='1'>Yes</option>
+                            <option value='0'>No</option>
+                        </select>
                         <br />
                         <button onClick={submitForm} className="btn btn-primary" style={{ width: '100%' }}>Update</button>
                     </div>
