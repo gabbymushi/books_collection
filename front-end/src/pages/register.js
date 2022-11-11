@@ -15,6 +15,21 @@ export default function Register() {
 
     const submitForm = () => {
         console.log(inputs);
+        if (inputs.name === undefined || inputs.name === '') {
+            alert('Add name')
+            return
+        }
+        
+        if (inputs.email === undefined || inputs.email === '') {
+            alert('Add email')
+            return
+        }
+
+        if (inputs.password === undefined || inputs.password === '') {
+            alert('Add password')
+            return
+        }
+
         http.post('/auth/register', inputs).then((res) => {
             navigate('/');
         })
@@ -46,7 +61,7 @@ export default function Register() {
                             value={inputs.password || ''}
                             onChange={handleChange}
                         />
-                        <br/>
+                        <br />
                         <button onClick={submitForm} className="btn btn-primary" style={{ width: '100%' }}>Register</button>
                     </div>
 
