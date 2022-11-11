@@ -14,12 +14,11 @@ export default function Register() {
     }
 
     const submitForm = () => {
-        console.log(inputs);
         if (inputs.name === undefined || inputs.name === '') {
             alert('Add name')
             return
         }
-        
+
         if (inputs.email === undefined || inputs.email === '') {
             alert('Add email')
             return
@@ -31,15 +30,16 @@ export default function Register() {
         }
 
         http.post('/auth/register', inputs).then((res) => {
-            navigate('/');
+            navigate('/login');
         })
     }
 
     return (
-        <div classNamee="card card-body bg-light">
-            <h2>Create account</h2>
+        <div>
             <div className="row">
+                <div className="col-sm-3"></div>
                 <div className="col-sm-6 justify-content-center">
+                    <h2>Create account</h2>
                     <div className="card p-4">
                         <label>Full name</label>
                         <input type='text' className='form-control'
