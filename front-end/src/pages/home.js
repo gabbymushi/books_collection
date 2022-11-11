@@ -22,8 +22,9 @@ export default function Home() {
                 <div className="col-md-10"></div>
                 <div className="col-md-2"><Link className="btn btn-primary" to={'/add-book'}>Add book</Link></div>
             </div>
-            <table className="table">
-                <thead>
+            <br/>
+            <table className="table table-striped table-bordered ">
+                <thead className="thead-dark">
                     <tr>
                         <th>s/N</th>
                         <th>Title</th>
@@ -40,8 +41,12 @@ export default function Home() {
                                 <td>{user.title}</td>
                                 <td>{user.author}</td>
                                 <td>{user.description}</td>
-                                <td><Link to={{ pathname: `/edit/${user.id}` }} className="btn btn-primary">Edit</Link>
-                                    <button className="btn btn-danger">Delete</button></td>
+                                <td>
+                                    {JSON.parse(localStorage.getItem('user')).id === user.user_id &&
+                                        <div>  <Link to={{ pathname: `/edit/${user.id}` }} className="btn btn-primary">Edit</Link>
+                                            <button className="btn btn-danger">Delete</button></div>
+                                    }
+                                </td>
                             </tr>
                         ))
                     }
