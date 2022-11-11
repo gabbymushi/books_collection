@@ -14,7 +14,16 @@ export default function Login({ login }) {
     }
 
     const submitForm = () => {
-        console.log(inputs);
+        if (inputs.email === undefined || inputs.email === '') {
+            alert('Add email')
+            return
+        }
+
+        if (inputs.password === undefined || inputs.password === '') {
+            alert('Add password')
+            return
+        }
+        
         http.post('/auth/login', inputs).then((res) => {
             localStorage.clear();
 
