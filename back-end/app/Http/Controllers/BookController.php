@@ -24,6 +24,7 @@ class BookController extends Controller
                 ->where('user_id', $request->user()->id);
         })
             ->orWhere('is_public', 1)
+            ->orderByDesc('id')
             ->get();
 
         return response()->json([
@@ -31,16 +32,6 @@ class BookController extends Controller
             'message' => 'Books retrieved successfully.',
             'data' => $books
         ], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -74,17 +65,6 @@ class BookController extends Controller
             'message' => 'Book retrieved successfully.',
             'data' => $book
         ], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
