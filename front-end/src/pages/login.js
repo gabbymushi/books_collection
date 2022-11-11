@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import http from "../http";
 
-export default function Login() {
+export default function Login({ login }) {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
 
@@ -24,6 +24,8 @@ export default function Login() {
             window.localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
             console.log(localStorage.getItem('token'))
+            login();
+
             navigate('/home');
         }).catch((res) => {
             alert('Wrong username or password');
